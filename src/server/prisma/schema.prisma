@@ -18,14 +18,14 @@ model Student {
 }
 
 model Information {
-  id        Int     @id @default(autoincrement())
-  firstName String
-  lastName  String
-  email     String
-  imageUrl  String
-  gpa       Float
+  id        Int      @id @default(autoincrement())
+  firstName String   @db.String
+  lastName  String   @db.String
+  email     String   @db.String
+  imageUrl  String?  @default("default-image-url.jpg")
+  gpa       Float    @validate(number: { min: 0, max: 4 })
   studentId Int
-  student   Student @relation(fields: [studentId], references: [id])
+  student   Student  @relation(fields: [studentId], references: [id])
 }
 
 
