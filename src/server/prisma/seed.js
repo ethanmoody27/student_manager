@@ -35,3 +35,4 @@ seed()
     await prisma.$disconnect();
     process.exit(1);
   });
+
