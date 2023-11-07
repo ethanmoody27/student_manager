@@ -5,7 +5,7 @@ import "./index.less";
 
 import { Provider } from "react-redux";
 import store from "./store";
-
+import Students from "./features/students/Students.jsx";
 import AuthForm from "./features/auth/AuthForm";
 import Tasks from "./features/tasks/Tasks";
 import Root from "./layout/Root.jsx";
@@ -19,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Tasks /> },
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
+      { path: "/students", element: <Students /> },
     ],
   },
 ]);
