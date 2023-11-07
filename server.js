@@ -6,9 +6,11 @@ const app = express();
 const port = 4000;
 
 const studentsRouter = require("./src/server/api/students");
+const informationRouter = require("./src/server/api/information");
 
 app.use(express.json());
 app.use('/students', studentsRouter);
+app.use('/information', informationRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -55,7 +57,6 @@ app.get('/students/:id', async (req, res, next) => {
 });
 
 // Route for creating a new student
-// Route for creating a new student
 app.post('/students/register', async (req, res, next) => {
   try {
       const { username, password, gpa } = req.body;
@@ -80,6 +81,42 @@ app.post('/students/register', async (req, res, next) => {
   }
 });
 
+// Route for updating username and password
+app.put('/students/:id/update-credentials', async (req, res, next) => {
+  try {
+    const studentId = parseInt(req.params.id);
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password are required' });
+    }
+
+    const updatedStudent = await prisma.student.update({
+      where: { id: studentId },
+      data: { username, password },
+    });
+
+    res.json(updatedStudent);
+  } catch (e) {
+    next(e);
+  }
+});
+
+// Route for updating information by ID
+app.put('/information/:id', async (req, res, next) => {
+    try {
+        const informationId = parseInt(req.params.id);
+        const { firstName, lastName, email, imageUrl, gpa } = req.body;
+        const updatedInformation = await prisma.information.update({
+          where: { id: informationId },
+          data: { firstName, lastName, email, imageUrl, gpa },
+        });
+
+        res.json(updatedInformation);
+      } catch (e) {
+        next(e);
+      }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

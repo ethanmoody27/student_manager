@@ -47,4 +47,28 @@ router.post('/register', async (req, res, next) => {
     }
 });
 
+// DELETE a student by ID
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const studentId = parseInt(req.params.id);
+
+        const existingStudent = await prisma.student.findUnique({
+            where: { id: studentId },
+        });
+
+        if (!existingStudent) {
+            return next({
+                status: 404,
+                message: 'Student with ID ${studentId} not found',
+            });
+        }
+
+        await prisma.student.delete({ where: { id: studentId } });
+
+        res.sendStatus(204);
+    } catch (e) {
+        next(e);
+    }
+});
+
 module.exports = router;
