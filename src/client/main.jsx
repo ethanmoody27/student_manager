@@ -9,7 +9,7 @@ import Students from "./features/students/Students.jsx";
 import AuthForm from "./features/auth/AuthForm";
 import Tasks from "./features/tasks/Tasks";
 import Root from "./layout/Root.jsx";
-
+import AddStudent from "./features/students/AddStudent.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
       { path: "/students", element: <Students /> },
+      { path: "/new", element: <AddStudent /> },
     ],
   },
 ]);
