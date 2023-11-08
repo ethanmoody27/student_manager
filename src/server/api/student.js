@@ -5,46 +5,46 @@ const mockData = [
   {
     id: 1,
     firstname: "Noah",
-    lastname: "(1)",
-    email: "fullstack",
+    lastname: "Raine",
+    email: "Noah2154@gmail.com",
     imageUrl:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fprofile-icon&psig=AOvVaw3P7ixLZjt0TFm5vrCeafUg&ust=1699467207494000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCODYy_C-soIDFQAAAAAdAAAAABAh",
+      "https://i.kym-cdn.com/photos/images/original/002/673/967/908.jpg",
     gpa: "3.57",
   },
   {
     id: 2,
     firstname: "Olivia",
-    lastname: "(2)",
-    email: "Gmail",
+    lastname: "Lance",
+    email: "LanceOOO@yahoo.com",
     imageUrl:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fprofile-icon&psig=AOvVaw3P7ixLZjt0TFm5vrCeafUg&ust=1699467207494000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCODYy_C-soIDFQAAAAAdAAAAABAh",
+      "https://i.kym-cdn.com/photos/images/original/002/673/966/d10.jpg",
     gpa: "3.27",
   },
   {
     id: 3,
     firstname: "Henry",
-    lastname: "(3)",
-    email: "hotmail",
+    lastname: "Turner",
+    email: "Henry95123454@hotmail.com",
     imageUrl:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fprofile-icon&psig=AOvVaw3P7ixLZjt0TFm5vrCeafUg&ust=1699467207494000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCODYy_C-soIDFQAAAAAdAAAAABAh",
+      "https://i.kym-cdn.com/photos/images/newsfeed/002/673/963/f45.jpg",
     gpa: "3.33",
   },
   {
     id: 4,
     firstname: "Ella",
-    lastname: "(4)",
-    email: "yahoo",
+    lastname: "Wayne",
+    email: "wella4141@gmail.com",
     imageUrl:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fprofile-icon&psig=AOvVaw3P7ixLZjt0TFm5vrCeafUg&ust=1699467207494000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCODYy_C-soIDFQAAAAAdAAAAABAh",
+      "https://i.kym-cdn.com/photos/images/original/002/673/969/793.jpg",
     gpa: "3.44",
   },
   {
     id: 5,
-    firstname: "Ben",
-    lastname: "(5)",
-    email: "bring",
+    firstname: "Bernie",
+    lastname: "Morgan",
+    email: "benmorgan124565@outline.com",
     imageUrl:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fprofile-icon&psig=AOvVaw3P7ixLZjt0TFm5vrCeafUg&ust=1699467207494000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCODYy_C-soIDFQAAAAAdAAAAABAh",
+      "https://i.kym-cdn.com/photos/images/original/002/673/959/f4f.jpg",
     gpa: "3.55",
   },
 ];

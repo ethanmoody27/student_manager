@@ -14,7 +14,26 @@ const SingleStudent = () => {
     );
   }
   console.log(data);
-  return <div>SingleStudent</div>;
+  return (
+    <>
+      <div key={data.id}>
+        <div>
+          <img src={data.imageUrl} alt="photo" width="250" height="300" />
+        </div>
+        <div>
+          <p>Student Name:</p>
+          <h2>
+            {data.firstname} {"   "}
+            {data.lastname}
+          </h2>
+          <p>Email:</p>
+          <h3>{data.email}</h3>
+          <p>GPA:</p>
+          <h4>{data.gpa}</h4>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default SingleStudent;
