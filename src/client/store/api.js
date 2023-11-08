@@ -16,7 +16,15 @@ const api = createApi({
       return headers;
     },
   }),
-  endpoints: () => ({}),
+  endpoints: (builder) => ({
+    createStudent: builder.mutation({
+      query: (studentData) => ({
+        url: '/students',
+        method: 'POST',
+        body: studentData,
+      }),
+    }),
+  }),
 });
 
 export default api;
