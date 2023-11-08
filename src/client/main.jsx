@@ -5,12 +5,13 @@ import "./index.less";
 
 import { Provider } from "react-redux";
 import store from "./store";
-import Students from "./features/students/Students.jsx";
+import Students from "./features/students/StudentsList.jsx";
 import AuthForm from "./features/auth/AuthForm";
 import Tasks from "./features/tasks/Tasks";
 import Root from "./layout/Root.jsx";
 import AddStudent from "./features/students/AddStudent.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SingleStudent from "./features/students/SingleStudent.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
       { path: "/students", element: <Students /> },
+      { path: "/students/:id", element: <SingleStudent /> },
       { path: "/new", element: <AddStudent /> },
     ],
   },
