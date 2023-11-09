@@ -28,5 +28,11 @@ model Information {
   studentId Int
 }
 
-
-
+model Student {
+   id          Int     @id @default(autoincrement())
+   firstname String
+   lastname String
+   email String @unique
+   imageUrl String
+   gpa Int
+}
