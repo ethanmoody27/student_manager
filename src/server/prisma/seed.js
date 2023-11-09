@@ -5,24 +5,27 @@ const seed = async () => {
 
   for (let i = 1; i <= studentsCount; i++) {
     const gpa = parseFloat((Math.random() * 4).toFixed(2));
-    
-    const student = await prisma.student.create({
+
+    const user = await prisma.user.create({
       data: {
-        username: `student${i}`,
+        username: `user${i}`,
         password: "your_password",
-        information: {
+        student: {
           create: {
             firstName: `FirstName${i}`,
             lastName: `LastName${i}`,
-            email: `student${i}@example.com`,
+            email: `user${i}@example.com`,
             imageUrl: `https://example.com/image${i}.jpg`,
             gpa,
           },
         },
       },
+      include: {
+        student: true,
+      },
     });
 
-    console.log(`Seeded student with ID: ${student.id}`);
+    console.log(`Seeded user with ID: ${user.id} and student with ID: ${user.student.id}`);
   }
 };
 

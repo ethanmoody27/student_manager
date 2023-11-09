@@ -2,15 +2,15 @@
 const express = require('express');
 const router = express.Router();
 const { ServerError } = require('../errors');
-const prisma = require('../prisma');
+const prisma = require("../prisma");
 
 // User must be logged in to access student tasks
-router.use((req, res, next) => {
-  if (!res.locals.user) {
-    return next(new ServerError(401, 'You must be logged in.'));
-  }
-  next();
-});
+// router.use((req, res, next) => {
+//   if (!res.locals.user) {
+//     return next(new ServerError(401, 'You must be logged in.'));
+//   }
+//   next();
+// });
 
 // Sends all students
 router.get('/', async (req, res, next) => {

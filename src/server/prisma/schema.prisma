@@ -10,23 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Student {
-  id          Int      @id @default(autoincrement())
-  username    String   @unique
-  password    String
-  information Information[]
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+  student  Student[] @relation("StudentInformation")
 }
 
-model Information {
+model Student {
   id        Int      @id @default(autoincrement())
   firstName String
   lastName  String
   email     String
-  imageUrl  String? @default("default-image-url.jpg")
+  imageUrl  String?  @default("default-image-url.jpg")
   gpa       Float
-  student   Student  @relation(fields: [studentId], references: [id])
-  studentId Int
+  user      User     @relation("StudentInformation", fields: [userId], references: [id])
+  userId    Int
 }
-
-
-
