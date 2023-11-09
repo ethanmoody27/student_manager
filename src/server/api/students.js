@@ -1,18 +1,18 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { ServerError } = require('../errors');
+const { ServerError } = require("../errors");
 const prisma = require("../prisma");
 
 // User must be logged in to access student tasks
 router.use((req, res, next) => {
   if (!res.locals.user) {
-    return next(new ServerError(401, 'You must be logged in.'));
+    return next(new ServerError(401, "You must be logged in."));
   }
   next();
 });
 
 // Sends all students
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const students = await prisma.student.findMany();
     res.json(students);
@@ -22,15 +22,15 @@ router.get('/', async (req, res, next) => {
 });
 
 // Creates a new student
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const { firstName, lastName, email, imageUrl, gpa, user } = req.body;
 
     if (!firstName || !lastName || !email || !imageUrl || !gpa) {
-      throw new ServerError(400, 'All fields are required.');
+      throw new ServerError(400, "All fields are required.");
     }
 
-console.log("This is the console.log", req.body);
+    console.log("This is the console.log", req.body);
 
     const student = await prisma.student.create({
       data: { firstName, lastName, email, imageUrl, gpa, user },
@@ -49,15 +49,14 @@ const validateStudent = async (studentId) => {
   });
 
   if (!student) {
-    throw new ServerError(404, 'Student not found.');
+    throw new ServerError(404, "Student not found.");
   }
 
   return student;
 };
 
-
 // Sends a single student by ID
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const studentId = +req.params.id;
     const student = await validateStudent(studentId);
@@ -68,7 +67,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // Updates a single student by ID
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const studentId = +req.params.id;
     const { firstName, lastName, email, imageUrl, gpa } = req.body;
@@ -87,7 +86,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 // Deletes a single student by ID
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const studentId = +req.params.id;
 
