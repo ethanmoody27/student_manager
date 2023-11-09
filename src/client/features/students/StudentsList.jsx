@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetStudentsQuery } from "./studentsSlice";
+import AddStudent from "./AddStudent";
 import List from "./List";
 
 const Students = () => {
@@ -20,6 +21,9 @@ const Students = () => {
       {data.map((student, id) => (
         <List student={student} key={id} />
       ))}
+      <br />
+      <br />
+      <AddStudent />
     </>
   );
 };

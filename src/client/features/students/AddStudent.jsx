@@ -1,28 +1,31 @@
 import React, { useState } from "react";
-// import { useAddTaskMutation } from "../../store/taskSlice";
+import { useAddStudentMutation } from "./studentsSlice";
 
 const AddStudent = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  //   const [addStudent] = useAddTaskMutation();
+  const [addStudent] = useAddStudentMutation();
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const studentData = {
-  //       firstname: firstname,
-  //       lastname: lastname,
-  //       email: email,
-  //     };
-  //     addStudent(studentData);
-  //     setFirstname("");
-  //     setLastname("");
-  //     setEmail("");
-  //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const studentData = {
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      imageUrl: "add later",
+      gpa: 5,
+    };
+    console.log(studentData);
+    addStudent(studentData);
+    setFirstname("");
+    setLastname("");
+    setEmail("");
+  };
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           First Name:
           <input
@@ -49,6 +52,7 @@ const AddStudent = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
+
         <br />
         <button type="submit">Add Student</button>
       </form>
