@@ -26,10 +26,20 @@ export default function Navbar() {
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
+
         {token ? (
-          <li>
-            <a onClick={handleLogout}>Log Out</a>
-          </li>
+          <>
+            <div>
+              <li>
+                <NavLink to="/students">Students</NavLink>
+              </li>
+            </div>
+            <div>
+              <li>
+                <a onClick={handleLogout}>Log Out</a>
+              </li>
+            </div>
+          </>
         ) : (
           <li>
             <NavLink to="/login">Log In</NavLink>
