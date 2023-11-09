@@ -13,8 +13,8 @@ const UpdateForm = ({ id }) => {
     e.preventDefault();
     const studentData = {
       id: id,
-      firstname: firstname,
-      lastname: lastname,
+      firstName: firstname,
+      lastName: lastname,
       email: email,
       imageUrl: imageUrl,
       gpa: gpa,

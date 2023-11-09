@@ -6,12 +6,15 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Task" (
+CREATE TABLE "Student" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "description" TEXT NOT NULL,
-    "done" BOOLEAN NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "imageUrl" TEXT DEFAULT 'default-image-url.jpg',
+    "gpa" REAL NOT NULL,
     "userId" INTEGER NOT NULL,
-    CONSTRAINT "Task_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "Student_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex

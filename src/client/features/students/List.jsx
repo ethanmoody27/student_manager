@@ -21,7 +21,7 @@ const List = ({ student }) => {
       <div key={student.id}>
         <div>
           <h2>
-            {student.firstname}
+            {student.firstName}
             {"    "} {"   "}
             <button onClick={() => handleDelete(student.id)}>
               <i className="fa-solid fa-xmark"></i>

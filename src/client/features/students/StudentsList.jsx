@@ -30,7 +30,7 @@ const Students = () => {
       ))}
       <br />
       <br />
-      <AddStudent />
+      <AddStudent id={data.id} />
     </>
   );
 };

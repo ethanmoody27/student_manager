@@ -30,8 +30,8 @@ const SingleStudent = () => {
         <div>
           <p>Student Name:</p>
           <h2>
-            {data.firstname} {"   "}
-            {data.lastname}
+            {data.firstName} {"   "}
+            {data.lastName}
           </h2>
           <p>Email:</p>
           <h3>{data.email}</h3>

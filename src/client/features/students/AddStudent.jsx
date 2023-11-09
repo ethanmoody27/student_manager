@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAddStudentMutation } from "./studentsSlice";
 
-const AddStudent = () => {
+const AddStudent = ({ id }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -10,11 +10,16 @@ const AddStudent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const studentData = {
-      firstname: firstname,
-      lastname: lastname,
+      firstName: firstname,
+      lastName: lastname,
       email: email,
       imageUrl: "add later",
       gpa: 5,
+      user: {
+        connect: {
+          id: 11,
+        },
+      },
     };
     console.log(studentData);
     addStudent(studentData);
