@@ -1,12 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDeleteStudentMutation } from "./studentsSlice";
 
 const List = ({ student }) => {
   const dispatch = useDispatch();
+  const [deleteStudent] = useDeleteStudentMutation();
+
   const handleDelete = async (id) => {
+    console.log(id);
     try {
-      await deleteStudent(id);
+      await deleteStudent(id).unwrap();
     } catch (err) {
       console.error(err);
     }

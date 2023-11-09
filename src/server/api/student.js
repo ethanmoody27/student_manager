@@ -93,3 +93,26 @@ router.post("/", async (req, res, next) => {
     console.log(err);
   }
 });
+
+// delete
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const id = +req.params.id;
+    const studentExists = await prisma.student.findFirst({
+      where: { id },
+    });
+    if (!studentExists) {
+      return next({
+        status: 404,
+        message: `Could not find post with id ${id}`,
+      });
+    }
+    await prisma.student.delete({
+      where: { id },
+    });
+    res.json(`Student with id${id} was successfully deleted.`);
+  } catch (err) {
+    next(err);
+  }
+});
