@@ -1,9 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useGetStudentQuery } from "./studentsSlice";
+import { useSelector } from "react-redux";
+import { selectToken } from "../auth/authSlice";
+import UpdateForm from "./UpdateForm";
 
 const SingleStudent = () => {
+  const token = useSelector(selectToken);
   const { id } = useParams();
   const { data, error, isLoading } = useGetStudentQuery(id);
+  if (!token) {
+    return <p>You must be logged in to see your tasks.</p>;
+  }
   if (isLoading) {
     return <div className="loading-message">Loading...</div>;
   }
@@ -31,7 +38,9 @@ const SingleStudent = () => {
           <p>GPA:</p>
           <h4>{data.gpa}</h4>
         </div>
-      </div>
+      </div>{" "}
+      <br />
+      <UpdateForm id={data.id} />
     </>
   );
 };

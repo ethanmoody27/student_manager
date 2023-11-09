@@ -116,3 +116,38 @@ router.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+//put
+router.put("/:id", async (req, res, next) => {
+  try {
+    const id = +req.params.id;
+    const postExists = await prisma.student.findUnique({ where: { id } });
+    if (!postExists) {
+      return next({
+        status: 404,
+        message: `Could not find post with id ${id}`,
+      });
+    }
+    const { firstname, lastname, email, imageUrl, gpa } = req.body;
+    if (!firstname || !lastname || !email || !imageUrl || !gpa) {
+      const error = {
+        status: 400,
+        message: "Must provide all update info.",
+      };
+      return next(error);
+    }
+    const update = await prisma.student.updateMany({
+      where: { id },
+      data: {
+        firstname,
+        lastname,
+        email,
+        imageUrl,
+        gpa,
+      },
+    });
+    res.json(update);
+  } catch (err) {
+    next(err);
+  }
+});
