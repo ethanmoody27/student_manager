@@ -1,16 +1,15 @@
-// students.js
 const express = require('express');
 const router = express.Router();
 const { ServerError } = require('../errors');
 const prisma = require("../prisma");
 
 // User must be logged in to access student tasks
-// router.use((req, res, next) => {
-//   if (!res.locals.user) {
-//     return next(new ServerError(401, 'You must be logged in.'));
-//   }
-//   next();
-// });
+router.use((req, res, next) => {
+  if (!res.locals.user) {
+    return next(new ServerError(401, 'You must be logged in.'));
+  }
+  next();
+});
 
 // Sends all students
 router.get('/', async (req, res, next) => {
@@ -25,23 +24,26 @@ router.get('/', async (req, res, next) => {
 // Creates a new student
 router.post('/', async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { firstName, lastName, email, imageUrl, gpa, user } = req.body;
 
-    if (!username || !password) {
-      throw new ServerError(400, 'Username and password are required.');
+    if (!firstName || !lastName || !email || !imageUrl || !gpa) {
+      throw new ServerError(400, 'All fields are required.');
     }
 
+console.log("This is the console.log", req.body);
+
     const student = await prisma.student.create({
-      data: { username, password },
+      data: { firstName, lastName, email, imageUrl, gpa, user },
     });
+
     res.status(201).json(student);
   } catch (err) {
     next(err);
   }
 });
 
-// Checks if a student exists and belongs to the given user
-const validateStudent = async (user, studentId) => {
+// Checks if a student exists
+const validateStudent = async (studentId) => {
   const student = await prisma.student.findUnique({
     where: { id: studentId },
   });
@@ -50,18 +52,15 @@ const validateStudent = async (user, studentId) => {
     throw new ServerError(404, 'Student not found.');
   }
 
-  if (student.id !== user.id) {
-    throw new ServerError(403, 'This student does not belong to you.');
-  }
-
   return student;
 };
+
 
 // Sends a single student by ID
 router.get('/:id', async (req, res, next) => {
   try {
     const studentId = +req.params.id;
-    const student = await validateStudent(res.locals.user, studentId);
+    const student = await validateStudent(studentId);
     res.json(student);
   } catch (err) {
     next(err);
@@ -72,17 +71,13 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const studentId = +req.params.id;
-    const { username, password } = req.body;
+    const { firstName, lastName, email, imageUrl, gpa } = req.body;
 
-    if (!username || !password) {
-      throw new ServerError(400, 'Username and password are required.');
-    }
-
-    await validateStudent(res.locals.user, studentId);
+    await validateStudent(studentId);
 
     const updatedStudent = await prisma.student.update({
       where: { id: studentId },
-      data: { username, password },
+      data: { firstName, lastName, email, imageUrl, gpa },
     });
 
     res.json(updatedStudent);
@@ -95,8 +90,6 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const studentId = +req.params.id;
-
-    await validateStudent(res.locals.user, studentId);
 
     await prisma.student.delete({ where: { id: studentId } });
     res.sendStatus(204);
